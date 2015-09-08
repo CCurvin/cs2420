@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1441518556 source:/home/curvin/Versioning/cs2420/Practice/Practice/main.cpp
+	<iostream>
+	<string.h>
+

@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1441663825 source:/home/curvin/Versioning/cs2420/BigInt/BigInt/bigint.cpp
+	"bigint.h"
+	<iostream>
+	<string>
+
+1441340554 /home/curvin/Versioning/cs2420/BigInt/BigInt/bigint.h
+	<string>
+
+1441663884 source:/home/curvin/Versioning/cs2420/BigInt/BigInt/assign1_driver.cpp
+	"bigint.h"
+	<iostream>
+	<string>
+	<stdexcept>
+
