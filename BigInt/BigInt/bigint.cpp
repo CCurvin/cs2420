@@ -1,6 +1,6 @@
 #include "bigint.h"
 #include <iostream>
-#include <string>
+#include <string.h>
 
 using namespace std;
 
@@ -10,16 +10,18 @@ BigInt::BigInt(){
 
 BigInt::BigInt(const char* str) {
 
-    int sizeNum = sizeof(str);
-    char charArr[NUM_DIGITS + 1];
-    for (int i=0; i<=(NUM_DIGITS + 1); i++) {
-            charArr[i] = '0';
-    }
-    for (int i=0; i<sizeNum; i++) {
-        charArr[i + (NUM_DIGITS + 1) - sizeNum] = str[i];
+    //Get the string length
+    int sizeStr = strlen(str);
+
+    //Loop through the array to populate with zeros
+    for (int i=0; i<=NUM_DIGITS; i++) {
+            numArr[i] = 0;
     }
 
-    cout << charArr[i];
+    //Loop through the array to populate with the new string of digits
+    for (int i=0; i<sizeStr; i++) {
+        numArr[i + (NUM_DIGITS + 1) - sizeStr] = str[i] - '0';
+    }
 
 }
 
@@ -44,6 +46,10 @@ BigInt BigInt::operator-(const BigInt& rightOperand) const {
 }
 
 string BigInt::convertToString() const {
-	return "";
+    string str;
+    for (int i=0; i<NUM_DIGITS; i++) {
+        str[i] = numArr[i] - '0';
+    }
+    return str;
 }
 
