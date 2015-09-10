@@ -5,10 +5,15 @@
 using namespace std;
 
 BigInt::BigInt(){
-
+    for (int i=0 i<(NUM_DIGITS +1); i++) {
+        numArr[i] = 0;
+    }
 }
 
 BigInt::BigInt(const char* str) {
+	
+	//***TODO: Check if str[0] is a negative sign
+	//Can use atoi to convert ascii to int
 
     //Get the string length
     int sizeStr = strlen(str);
