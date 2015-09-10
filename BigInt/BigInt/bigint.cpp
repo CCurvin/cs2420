@@ -20,7 +20,11 @@ BigInt::BigInt(const char* str) {
 
     //Loop through the array to populate with the new string of digits
     for (int i=0; i<sizeStr; i++) {
-        numArr[i + (NUM_DIGITS + 1) - sizeStr] = str[i] - '0';
+        //curr is the current position of i, plus the size of the array (to get to the
+        //last index) minus the size of the input string to get to the first position
+        //in the array where the string of numbers needs to go
+		int curr = i + (NUM_DIGITS +1) - sizeStr;
+		numArr[curr] = str[i] - '0';
     }
 
 }
@@ -46,10 +50,25 @@ BigInt BigInt::operator-(const BigInt& rightOperand) const {
 }
 
 string BigInt::convertToString() const {
-    string str;
-    for (int i=0; i<NUM_DIGITS; i++) {
-        str[i] = numArr[i] - '0';
-    }
-    return str;
+	int arrPos;
+	int numSize = 0;
+	string charArr;
+
+	//Loop through array to find first non-zero digit
+	for (int i=0; i<=(NUM_DIGITS +1); i++) {
+		arrPos = i;
+		if (numArr[i] != 0) {
+			//Set the size of the number
+			numSize = (NUM_DIGITS +1) - arrPos;
+			break;
+		}
+	}
+
+	//Loop through the remaining size of the number and concatenate it
+	for (int i=arrPos; i<(NUM_DIGITS +1); i++) {
+		charArr+= to_string(numArr[i]);
+	}
+
+	return charArr;
 }
 
