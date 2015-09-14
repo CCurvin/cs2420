@@ -1,8 +1,7 @@
 # depslib dependency file v1.0
-1442204746 source:/home/curvin/Versioning/cs2420/BigInt/BigInt/bigint.cpp
+1442267970 source:/home/curvin/Versioning/cs2420/BigInt/BigInt/bigint.cpp
 	"bigint.h"
 	<iostream>
-	<stdlib.h>
 	<string.h>
 
 1442199451 /home/curvin/Versioning/cs2420/BigInt/BigInt/bigint.h

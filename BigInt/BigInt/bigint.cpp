@@ -1,9 +1,11 @@
+//Author: Chad Curvin
+//Class: cs2420
+//Description: Create a BigInt class that stores and performs arithmetic on extraordinarily large numbers
+
+
 #include "bigint.h"
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <sstream>
 
 using namespace std;
 
@@ -11,7 +13,7 @@ BigInt::BigInt(){
     //Populate array with zeros
     for (int i=0; i<=(NUM_DIGITS +1); i++) {
         numArr[i] = 0;
-    };
+    }
 }
 
 BigInt::BigInt(const char* str) {
@@ -19,7 +21,10 @@ BigInt::BigInt(const char* str) {
     //Populate array with zeros
     for (int i=0; i<=(NUM_DIGITS + 1); i++) {
         numArr[i] = 0;
-    };
+    }
+
+    //Get int length
+    int sizeInput = strlen(str);
 
 
 	//Check if str[0] is a negative sign
@@ -27,10 +32,8 @@ BigInt::BigInt(const char* str) {
         isNeg = false;
     } else {
         isNeg = true;
+        --sizeInput;
     };
-
-    //Get int length
-    int sizeInput = strlen(str);
 
 	//Populate numArr with input
 	for (int i=0; i<=sizeInput; i++) {
@@ -39,7 +42,7 @@ BigInt::BigInt(const char* str) {
         //in the array where the string of numbers needs to go
 		int curr = i + (NUM_DIGITS + 1) - sizeInput;
         numArr[curr] = str[i] - '0';
-	};
+	}
 
 }
 
@@ -51,7 +54,7 @@ BigInt BigInt::add(const BigInt& rightOperand) const {
 	//Loop through array and and perform addition on each index
 	for (int i=0; i<=NUM_DIGITS; i++) {
 	addArr.numArr[i] = this->numArr[i] + rightOperand.numArr[i];
-	};
+	}
 
 	return addArr;
 }
@@ -84,16 +87,16 @@ string BigInt::convertToString() const {
 			numSize = (NUM_DIGITS +1) - arrPos;
 			break;
 		};
-	};
+	}
 
     if (isNeg == true) {
-        //str[arrPos -1] = '-';
+        //str[arrPos -1] = '-'; //Tack on the negative sign
     };
 
-	//Loop through the remaining size of the number, convert it to an int, and concatenate it
-		for (int i=arrPos; i<=(NUM_DIGITS +1); i++) {
+	//Loop through the remaining size of the number, convert it to an int, and concatenate it to strip leading digits
+		for (int i=arrPos; i<=NUM_DIGITS; i++) {
 		str += (numArr[i] + '0');
-	};
+	}
 
 	return str;
 }
