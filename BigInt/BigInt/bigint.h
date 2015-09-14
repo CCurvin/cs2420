@@ -27,6 +27,7 @@ private:
 	int numArr[NUM_DIGITS + 1];
 	void tensComplement();
 	int* getTensComplement() const;
+	bool isNeg;
 
 };
 
