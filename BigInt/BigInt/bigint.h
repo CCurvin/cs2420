@@ -1,3 +1,7 @@
+//Author: Chad Curvin
+//Class: cs2420
+//Description: Create a BigInt class that stores and performs arithmetic on extraordinarily large numbers
+
 #ifndef BIG_INT_H
 #define BIG_INT_H
 

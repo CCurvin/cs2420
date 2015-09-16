@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1442288711 source:/home/curvin/Versioning/cs2420/CompressedString/assign2_driver.cpp
+	"compressedString.h"
+	<iostream>
+	<sstream>
+	<string>
+
+1442377898 /home/curvin/Versioning/cs2420/CompressedString/compressedString.h
+	<iostream>
+
+1442377484 source:/home/curvin/Versioning/cs2420/CompressedString/compressedString.cpp
+	"compressedString.h"
+	<string.h>
+	<string>
+
