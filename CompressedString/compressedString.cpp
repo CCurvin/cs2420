@@ -13,22 +13,19 @@ CompressedString::CompressedString(const char* str){    //Take the input string 
     //Get input length
     strSize = strlen(str);
 
-    char* input = new char[strSize];
-    for (int i=0; i<strSize; i++) {
-        *(input +i) = *(str +i);
-    }
+    cmpStr = new char[strSize];
 
     int cnt = 1; //Set count to 1, if the letter exists once we need to count it
 
     //Cycle through input looking for similar chars
-    while (*str != NULL) {
+    for (int i=0; i<strSize; i++) {
         char prev = *str; //Set the current char value to prev
         str = str++; //Move the char forward
         if (prev == *str) { //If the previous value of the input equals the current value, it's a repeat so increase the count
             cnt++;
         } else { //Otherwise this is the first time we've seen it, we need to record the value in prev and note how many times we saw it
-            cmpStr += prev;
-            cmpStr += cnt + '0'; //We have to convert count to a char, math does this for us
+            *(cmpStr +i) = prev;
+            *(cmpStr +i + 1) = cnt + '0'; //We have to convert count to a char, math does this for us
             cnt = 1; //Reset count to 1, if the letter exists once we need to count it
         }
     }

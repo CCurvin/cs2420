@@ -32,7 +32,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="assign2_driver.cpp" />
+		<Unit filename="compressedString.cpp" />
+		<Unit filename="compressedString.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
