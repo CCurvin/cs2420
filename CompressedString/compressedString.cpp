@@ -11,7 +11,12 @@ CompressedString::CompressedString(){
 
 CompressedString::CompressedString(const char* str){    //Take the input string and compress it
     //Get input length
-    originalLength();
+    int strSize = originalLength();
+
+    //Set input to global
+    for (int i=0; i<=strSize; i++) {
+        *(origStr+i) = *(str+i);
+    }
 
     //Create the array for the compressed string
     cmpStr = new char[strSize];
@@ -68,11 +73,11 @@ int CompressedString::length() const{
 }
 
 int CompressedString::originalLength() const{
-    strSize = 0;
-    char curr = *(str);
+    int strSize = 0;
+    char curr = *(origStr);
     while (curr != '\0') {
     strSize++;
-    curr = *(str +1);
+    curr = *(origStr+1);
     }
 
    return strSize;
