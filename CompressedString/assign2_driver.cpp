@@ -106,29 +106,30 @@ int main(){
    str[0] = '\0';
    s1.decompress(str, s1.originalLength()+1);
    checkTest("Test 24", string("aaabbbccc"), string(str));
-   delete str;
+   delete [] str;
    str = new char[s2.originalLength()+1];
    str[0] = '\0';
    s2.decompress(str, s2.originalLength()+1);
    checkTest("Test 25", string("abcccddd"), string(str));
    s1.decompress(str, s2.originalLength()+1);
    checkTest("Test 26", string("aaabbbcc"), string(str));
-   delete str;
+   delete [] str;
    str = NULL;
 
 
    //Large compressions
+   cout << endl << "***Bonus Tests***" << endl << endl;
    CompressedString large("aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbccdddddddd");
    checkTest("Test 27", 10, large.length());
    CompressedString backwards(large.reverse());
    checkTest("Test 28", 10, backwards.length());
-   CompressedString larger = backwards + larger;
-   checkTest("Test 29", 16, larger.length());
+   CompressedString larger = backwards + large;
+   checkTest("Test 29", 17, larger.length());
    str = new char[large.originalLength()+1];
    str[0] = '\0';
    large.decompress(str, large.originalLength()+1);
    checkTest("Test 30", string("aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbccdddddddd"), string(str));
-   delete str;
+   delete [] str;
    str = NULL;
    
 

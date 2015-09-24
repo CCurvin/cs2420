@@ -11,8 +11,9 @@ CompressedString::CompressedString(){
 
 CompressedString::CompressedString(const char* str){    //Take the input string and compress it
     //Get input length
-    strSize = strlen(str);
+    originalLength();
 
+    //Create the array for the compressed string
     cmpStr = new char[strSize];
 
     int cnt = 1; //Set count to 1, if the letter exists once we need to count it
@@ -59,16 +60,22 @@ CompressedString CompressedString::reverse() const{
    return CompressedString("");
 }
 
-void CompressedString::decompress(const char* str, int size) const{
+void CompressedString::decompress(char* str, int size) const{
 }
 
 int CompressedString::length() const{
-   int compLength = strlen(cmpStr);
-   return compLength;
+   return 0;
 }
 
 int CompressedString::originalLength() const{
-   return 0;
+    strSize = 0;
+    char curr = *(str);
+    while (curr != '\0') {
+    strSize++;
+    curr = *(str +1);
+    }
+
+   return strSize;
 }
 
 double CompressedString::compressionRatio() const{
