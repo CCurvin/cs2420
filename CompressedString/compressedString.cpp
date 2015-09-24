@@ -69,15 +69,22 @@ void CompressedString::decompress(char* str, int size) const{
 }
 
 int CompressedString::length() const{
-   return 0;
+    int strSize = 0;
+    char curr = *(cmpStr);
+    while (curr != '\0') {
+        strSize++;
+        curr = *(cmpStr+1);
+    }
+
+   return strSize;
 }
 
 int CompressedString::originalLength() const{
     int strSize = 0;
     char curr = *(origStr);
     while (curr != '\0') {
-    strSize++;
-    curr = *(origStr+1);
+        strSize++;
+        curr = *(origStr+1);
     }
 
    return strSize;
