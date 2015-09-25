@@ -22,8 +22,9 @@ class CompressedString{
       friend std::ostream& operator<<(std::ostream& outs, const CompressedString& source);
 
    private:
-    char* origStr; //Original string
+    const char* origStr; //Original string
     char* cmpStr; //Compressed string
+    int cmpStrLength;
 };
 
 

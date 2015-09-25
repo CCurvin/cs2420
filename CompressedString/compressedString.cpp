@@ -10,28 +10,41 @@ CompressedString::CompressedString(){
 }
 
 CompressedString::CompressedString(const char* str){    //Take the input string and compress it
+    origStr = str;
+
     //Get input length
     int strSize = originalLength();
 
     //Set input to global
-    for (int i=0; i<=strSize; i++) {
+/*    for (int i=0; i<=strSize; i++) {
         *(origStr+i) = *(str+i);
-    }
+    } */
 
     //Create the array for the compressed string
     cmpStr = new char[strSize];
 
-    int cnt = 1; //Set count to 1, if the letter exists once we need to count it
+    int cnt = 0; //Set count to 0
+    int pos = 0; //Set the Compressed String position
+    char curr = ' ';
+    char prev = ' ';
 
     //Cycle through input looking for similar chars
-    for (int i=0; i<strSize; i++) {
-        char prev = *str; //Set the current char value to prev
-        str = str++; //Move the char forward
-        if (prev == *str) { //If the previous value of the input equals the current value, it's a repeat so increase the count
+    for (int i=0; i<=strSize; i++) {
+        curr = *(str+i); //Move the char forward
+        if (i == 0) { //For the first round, we can't move left
+            prev = *(str);
+        } else {
+            prev = *(str+i-1); //Set the current char value to prev
+        }
+        if (prev == curr) { //If the previous value of the input equals the current value, it's a repeat so increase the count
             cnt++;
         } else { //Otherwise this is the first time we've seen it, we need to record the value in prev and note how many times we saw it
-            *(cmpStr +i) = prev;
-            *(cmpStr +i + 1) = cnt + '0'; //We have to convert count to a char, math does this for us
+            *(cmpStr+pos) = prev;
+            cmpStrLength = ++pos;
+            if (cnt > 1) {
+                *(cmpStr+pos) = cnt + '0'; //We have to convert count to a char, math does this for us
+                cmpStrLength = ++pos;
+            }
             cnt = 1; //Reset count to 1, if the letter exists once we need to count it
         }
     }
@@ -69,22 +82,22 @@ void CompressedString::decompress(char* str, int size) const{
 }
 
 int CompressedString::length() const{
-    int strSize = 0;
-    char curr = *(cmpStr);
-    while (curr != '\0') {
-        strSize++;
-        curr = *(cmpStr+1);
-    }
 
-   return strSize;
+   return cmpStrLength;
 }
 
 int CompressedString::originalLength() const{
     int strSize = 0;
-    char curr = *(origStr);
-    while (curr != '\0') {
-        strSize++;
-        curr = *(origStr+1);
+    char pos = *(origStr);
+    for (int i=0; i<99999999; i++) {
+//        while (pos != '\0') {
+            strSize++;
+            pos = *(origStr+i);
+            if (pos == '\0') {
+                strSize--;
+                break;
+            }
+//        }
     }
 
    return strSize;
