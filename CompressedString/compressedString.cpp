@@ -6,17 +6,19 @@ using std::ostream;
 using namespace std;
 
 CompressedString::CompressedString(){
-
+    this->origStr = " ";
+    this->cmpStr = " ";
 }
 
 CompressedString::CompressedString(const char* str){    //Take the input string and compress it
+    //Solve the chicken and egg issue
     origStr = str;
 
     //Get input length
     int strSize = originalLength();
 
     //Set input to global
-/*    for (int i=0; i<=strSize; i++) {
+/*  mobyfor (int i=0; i<=strSize; i++) {
         *(origStr+i) = *(str+i);
     } */
 
@@ -52,9 +54,18 @@ CompressedString::CompressedString(const char* str){    //Take the input string 
 
 CompressedString::CompressedString(const CompressedString& other){
 
+    //CompressedString* dpcpy = new CompressedString;
+    CompressedString* dpcpy;
+
+    for (int i=0; i<=other.length(); i++) {
+        *(dpcpy+i) = other.cmpStr;
+    }
+
 }
 
 CompressedString::~CompressedString(){
+
+delete [] cmpStr;
 
 }
 
@@ -89,7 +100,7 @@ int CompressedString::length() const{
 int CompressedString::originalLength() const{
     int strSize = 0;
     char pos = *(origStr);
-    for (int i=0; i<99999999; i++) {
+    for (int i=0; i<99999999; i++) { //Cop out method, break :D
 //        while (pos != '\0') {
             strSize++;
             pos = *(origStr+i);
